@@ -1,5 +1,7 @@
 " User Interfaces:			" {{{1
 function! pairpunct#PairAdd_chinese_style()	" {{{2
+    inoremap <buffer> <A-'> ‘’<Left>
+    inoremap <buffer> <A-"> “”<Left>
     inoremap <buffer> <A-9> ()<Left>
     inoremap <buffer> <A-(> （）<Left>
     inoremap <buffer> <A-[> 『』<Left>
@@ -16,11 +18,11 @@ function! pairpunct#PairAdd_chinese_style()	" {{{2
 endfunction
 
 function! pairpunct#Bind_punct_complete() " {{{2
-    "inoremap <buffer> <A-"> ""<Left>
-    "inoremap <buffer> <A-'> ''<Left>
-    "inoremap <buffer> <A-{> {}<Left>
-    "inoremap <buffer> <A-[> []<Left>
-    "inoremap <buffer> <A-(> ()<Left>
+    inoremap <buffer> <A-"> ""<Left>
+    inoremap <buffer> <A-'> ''<Left>
+    inoremap <buffer> <A-{> {}<Left>
+    inoremap <buffer> <A-[> []<Left>
+    inoremap <buffer> <A-(> ()<Left>
     snoremap <buffer> <A-"> ""<Left>
     snoremap <buffer> <A-'> ''<Left>
     inoremap <buffer> <A-<> <><Left>

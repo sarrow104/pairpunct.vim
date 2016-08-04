@@ -77,11 +77,11 @@ function! pairpunct#PairVisual_chinese_style()	" {{{2
     vnoremap <buffer> i"	<ESC>:call pairpunct#VisualPairOf('“', '”', 0)<CR>
 
     " NOTE: 区分全角和半角字符
-    vnoremap <buffer> ah'	<ESC>:call pairpunct#VisualPairOf("'", "'", 1)<CR>
-    vnoremap <buffer> ih'	<ESC>:call pairpunct#VisualPairOf("'", "'", 0)<CR>
+    vnoremap <buffer> as	<ESC>:execute "normal! va'"<CR>
+    vnoremap <buffer> is	<ESC>:execute "normal! vi'"<CR>
 
-    vnoremap <buffer> ah"	<ESC>:call pairpunct#VisualPairOf('"', '"', 1)<CR>
-    vnoremap <buffer> ih"	<ESC>:call pairpunct#VisualPairOf('"', '"', 0)<CR>
+    vnoremap <buffer> ad	<ESC>:execute "normal! va\""<CR>
+    vnoremap <buffer> id	<ESC>:execute "normal! vi\""<CR>
 
     vnoremap <buffer> a<	<ESC>:call pairpunct#VisualPairOf('《', '》', 1)<CR>
     vnoremap <buffer> i<	<ESC>:call pairpunct#VisualPairOf('《', '》', 0)<CR>

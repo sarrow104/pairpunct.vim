@@ -15,6 +15,9 @@ function! pairpunct#PairAdd_chinese_style()	" {{{2
     vnoremap <buffer> <A-[> <ESC>:call pairpunct#Quote_this_block('『', '』', "『』")<CR>
     vnoremap <buffer> <A-{> <ESC>:call pairpunct#Quote_this_block('「', '」', "「」")<CR>
     vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block('《', '》', "<>《》")<CR>
+
+    let b:match_words = '「:」,［:］,【:】,｛:｝,《:》,『:』,“:”,‘:’,（:）,\(，\|、\):\(。\|？\|！\)'
+    call pairpunct#PairDeleteBetween_chinese_style()
 endfunction
 
 function! pairpunct#Bind_punct_complete() " {{{2
@@ -52,12 +55,33 @@ function! pairpunct#PairAdd_english_style()	" {{{2
     vnoremap <buffer> <Space> <ESC>:call pairpunct#Quote_this_block(" ", " ", " ")<CR>
 endfunction
 
+function! pairpunct#PairDeleteBetween_chinese_style()	" {{{2
+    noremap <buffer> da'	:call pairpunct#VisualPairOf('‘', '’', 1)<CR>d
+    noremap <buffer> di'	:call pairpunct#VisualPairOf('‘', '’', 0)<CR>d
+
+    noremap <buffer> da"	:call pairpunct#VisualPairOf('“', '”', 1)<CR>d
+    noremap <buffer> di"	:call pairpunct#VisualPairOf('“', '”', 0)<CR>d
+
+    noremap <buffer> da<	:call pairpunct#VisualPairOf('《', '》', 1)<CR>d
+    noremap <buffer> di<	:call pairpunct#VisualPairOf('《', '》', 0)<CR>d
+
+    noremap <buffer> da[	:call pairpunct#VisualPairOf('『', '』', 1)<CR>d
+    noremap <buffer> di[	:call pairpunct#VisualPairOf('『', '』', 0)<CR>d
+endfunction
+
 function! pairpunct#PairVisual_chinese_style()	" {{{2
     vnoremap <buffer> a'	<ESC>:call pairpunct#VisualPairOf('‘', '’', 1)<CR>
     vnoremap <buffer> i'	<ESC>:call pairpunct#VisualPairOf('‘', '’', 0)<CR>
 
     vnoremap <buffer> a"	<ESC>:call pairpunct#VisualPairOf('“', '”', 1)<CR>
     vnoremap <buffer> i"	<ESC>:call pairpunct#VisualPairOf('“', '”', 0)<CR>
+
+    " NOTE: 区分全角和半角字符
+    vnoremap <buffer> ah'	<ESC>:call pairpunct#VisualPairOf("'", "'", 1)<CR>
+    vnoremap <buffer> ih'	<ESC>:call pairpunct#VisualPairOf("'", "'", 0)<CR>
+
+    vnoremap <buffer> ah"	<ESC>:call pairpunct#VisualPairOf('"', '"', 1)<CR>
+    vnoremap <buffer> ih"	<ESC>:call pairpunct#VisualPairOf('"', '"', 0)<CR>
 
     vnoremap <buffer> a<	<ESC>:call pairpunct#VisualPairOf('《', '》', 1)<CR>
     vnoremap <buffer> i<	<ESC>:call pairpunct#VisualPairOf('《', '》', 0)<CR>
@@ -135,11 +159,11 @@ function! pairpunct#VisualPairOf(m_b, m_e, flag)	" {{{2
 	let m_b= escape(a:m_b,'?\*')
 	if a:flag
 	    " Sarrow: 2011-09-16
-	    execute 'silent normal /'.m_e."\<CR>v?".m_b."\<CR>"
+	    execute 'silent normal! /'.m_e."\<CR>v?".m_b."\<CR>"
 	    "silent normal! /=m_ev?=m_b
 	    " End:
 	else
-	    execute 'silent normal /'.m_e."/b-1\<CR>v?".m_b."?e+1\<CR>"
+	    execute 'silent normal! /'.m_e."/b-1\<CR>v?".m_b."?e+1\<CR>"
 	    "silent normal! /=m_e/b-1v?=m_b?e+1
 	endif
     endif

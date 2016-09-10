@@ -17,7 +17,7 @@ function! pairpunct#PairAdd_chinese_style()	" {{{2
     vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block('《', '》', "<>《》")<CR>
 
     let b:match_words = '「:」,［:］,【:】,｛:｝,《:》,『:』,“:”,‘:’,（:）,\(，\|、\):\(。\|？\|！\)'
-    call pairpunct#PairDeleteBetween_chinese_style()
+    "call pairpunct#PairDeleteBetween_chinese_style()
 endfunction
 
 function! pairpunct#Bind_punct_complete() " {{{2
@@ -55,19 +55,22 @@ function! pairpunct#PairAdd_english_style()	" {{{2
     vnoremap <buffer> <Space> <ESC>:call pairpunct#Quote_this_block(" ", " ", " ")<CR>
 endfunction
 
-function! pairpunct#PairDeleteBetween_chinese_style()	" {{{2
-    noremap <buffer> da'	:call pairpunct#VisualPairOf('‘', '’', 1)<CR>d
-    noremap <buffer> di'	:call pairpunct#VisualPairOf('‘', '’', 0)<CR>d
-
-    noremap <buffer> da"	:call pairpunct#VisualPairOf('“', '”', 1)<CR>d
-    noremap <buffer> di"	:call pairpunct#VisualPairOf('“', '”', 0)<CR>d
-
-    noremap <buffer> da<	:call pairpunct#VisualPairOf('《', '》', 1)<CR>d
-    noremap <buffer> di<	:call pairpunct#VisualPairOf('《', '》', 0)<CR>d
-
-    noremap <buffer> da[	:call pairpunct#VisualPairOf('『', '』', 1)<CR>d
-    noremap <buffer> di[	:call pairpunct#VisualPairOf('『', '』', 0)<CR>d
-endfunction
+" NOTE:
+" dd是常用的按钮，删除范围的缩写，没意义了；
+" 还不如 va'd 这样使用；
+"function! pairpunct#PairDeleteBetween_chinese_style()	" {{{2
+"    noremap <buffer> da'	:call pairpunct#VisualPairOf('‘', '’', 1)<CR>d
+"    noremap <buffer> di'	:call pairpunct#VisualPairOf('‘', '’', 0)<CR>d
+"
+"    noremap <buffer> da"	:call pairpunct#VisualPairOf('“', '”', 1)<CR>d
+"    noremap <buffer> di"	:call pairpunct#VisualPairOf('“', '”', 0)<CR>d
+"
+"    noremap <buffer> da<	:call pairpunct#VisualPairOf('《', '》', 1)<CR>d
+"    noremap <buffer> di<	:call pairpunct#VisualPairOf('《', '》', 0)<CR>d
+"
+"    noremap <buffer> da[	:call pairpunct#VisualPairOf('『', '』', 1)<CR>d
+"    noremap <buffer> di[	:call pairpunct#VisualPairOf('『', '』', 0)<CR>d
+"endfunction
 
 function! pairpunct#PairVisual_chinese_style()	" {{{2
     vnoremap <buffer> a'	<ESC>:call pairpunct#VisualPairOf('‘', '’', 1)<CR>

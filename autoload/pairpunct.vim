@@ -1,52 +1,99 @@
 " User Interfaces:			" {{{1
 function! pairpunct#PairAdd_chinese_style()	" {{{2
-    inoremap <buffer> <A-'> ‘’<Left>
-    inoremap <buffer> <A-"> “”<Left>
-    inoremap <buffer> <A-9> ()<Left>
-    inoremap <buffer> <A-(> （）<Left>
-    inoremap <buffer> <A-[> 『』<Left>
-    inoremap <buffer> <A-{> 「」<Left>
-    inoremap <buffer> <A-<> 《》<Left>
+    if has('gui_running')
+        inoremap <buffer> <A-'> ‘’<Left>
+        inoremap <buffer> <A-"> “”<Left>
+        inoremap <buffer> <A-9> ()<Left>
+        inoremap <buffer> <A-(> （）<Left>
+        inoremap <buffer> <A-[> 『』<Left>
+        inoremap <buffer> <A-{> 「」<Left>
+        inoremap <buffer> <A-<> 《》<Left>
 
-    vnoremap <buffer> <A-'> <ESC>:call pairpunct#Quote_this_block('‘', '’', "'\"“”‘’")<CR>
-    vnoremap <buffer> <A-"> <ESC>:call pairpunct#Quote_this_block('“', '”', "'\"“”‘’")<CR>
-    vnoremap <buffer> <A-9> <ESC>:call pairpunct#Quote_this_block('(', ')', "()（）")<CR>
-    vnoremap <buffer> <A-(> <ESC>:call pairpunct#Quote_this_block('（', '）', "()（）")<CR>
-    vnoremap <buffer> <A-[> <ESC>:call pairpunct#Quote_this_block('『', '』', "『』")<CR>
-    vnoremap <buffer> <A-{> <ESC>:call pairpunct#Quote_this_block('「', '」', "「」")<CR>
-    vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block('《', '》', "<>《》")<CR>
+        vnoremap <buffer> <A-'> <ESC>:call pairpunct#Quote_this_block('‘', '’', "'\"“”‘’")<CR>
+        vnoremap <buffer> <A-"> <ESC>:call pairpunct#Quote_this_block('“', '”', "'\"“”‘’")<CR>
+        vnoremap <buffer> <A-9> <ESC>:call pairpunct#Quote_this_block('(', ')', "()（）")<CR>
+        vnoremap <buffer> <A-(> <ESC>:call pairpunct#Quote_this_block('（', '）', "()（）")<CR>
+        vnoremap <buffer> <A-[> <ESC>:call pairpunct#Quote_this_block('『', '』', "『』")<CR>
+        vnoremap <buffer> <A-{> <ESC>:call pairpunct#Quote_this_block('「', '」', "「」")<CR>
+        vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block('《', '》', "<>《》")<CR>
+    else
+        inoremap <buffer> ' ‘’<Left>
+        inoremap <buffer> " “”<Left>
+        inoremap <buffer> 9 ()<Left>
+        inoremap <buffer> ( （）<Left>
+        inoremap <buffer> [ 『』<Left>
+        inoremap <buffer> { 「」<Left>
+        inoremap <buffer> < 《》<Left>
+
+        vnoremap <buffer> ' <ESC>:call pairpunct#Quote_this_block('‘', '’', "'\"“”‘’")<CR>
+        vnoremap <buffer> " <ESC>:call pairpunct#Quote_this_block('“', '”', "'\"“”‘’")<CR>
+        vnoremap <buffer> 9 <ESC>:call pairpunct#Quote_this_block('(', ')', "()（）")<CR>
+        vnoremap <buffer> ( <ESC>:call pairpunct#Quote_this_block('（', '）', "()（）")<CR>
+        vnoremap <buffer> [ <ESC>:call pairpunct#Quote_this_block('『', '』', "『』")<CR>
+        vnoremap <buffer> { <ESC>:call pairpunct#Quote_this_block('「', '」', "「」")<CR>
+        vnoremap <buffer> < <ESC>:call pairpunct#Quote_this_block('《', '》', "<>《》")<CR>
+    endif
 
     let b:match_words = '「:」,［:］,【:】,｛:｝,《:》,『:』,“:”,‘:’,（:）,\(，\|、\):\(。\|？\|！\)'
     "call pairpunct#PairDeleteBetween_chinese_style()
 endfunction
 
 function! pairpunct#Bind_punct_complete() " {{{2
-    inoremap <buffer> <A-"> ""<Left>
-    inoremap <buffer> <A-'> ''<Left>
-    inoremap <buffer> <A-{> {}<Left>
-    inoremap <buffer> <A-[> []<Left>
-    inoremap <buffer> <A-(> ()<Left>
-    snoremap <buffer> <A-"> ""<Left>
-    snoremap <buffer> <A-'> ''<Left>
-    inoremap <buffer> <A-<> <><Left>
-    inoremap <buffer> <A-:> ::
-    inoremap <buffer> <A-:> ::
+    if has('gui_running')
+        inoremap <buffer> <A-"> ""<Left>
+        inoremap <buffer> <A-'> ''<Left>
+        inoremap <buffer> <A-{> {}<Left>
+        inoremap <buffer> <A-[> []<Left>
+        inoremap <buffer> <A-(> ()<Left>
+        snoremap <buffer> <A-"> ""<Left>
+        snoremap <buffer> <A-'> ''<Left>
+        inoremap <buffer> <A-<> <><Left>
+        inoremap <buffer> <A-:> ::
+        inoremap <buffer> <A-:> ::
+    else
+        inoremap <buffer> " ""<Left>
+        inoremap <buffer> ' ''<Left>
+        inoremap <buffer> { {}<Left>
+        inoremap <buffer> [ []<Left>
+        inoremap <buffer> ( ()<Left>
+        snoremap <buffer> " ""<Left>
+        snoremap <buffer> ' ''<Left>
+        inoremap <buffer> < <><Left>
+        inoremap <buffer> : ::
+        inoremap <buffer> : ::
+    endif
 endfunction
 
 function! pairpunct#PairAdd_english_style()	" {{{2
-    inoremap <buffer> <A-[> []<Left>
-    inoremap <buffer> <A-{> {}<Left>
-    inoremap <buffer> <A-(> ()<Left>
-    inoremap <buffer> <A-'> ''<Left>
-    inoremap <buffer> <A-"> ""<Left>
-    inoremap <buffer> <A-<> <><Left>
+    if has('gui_running')
+        inoremap <buffer> <A-[> []<Left>
+        inoremap <buffer> <A-{> {}<Left>
+        inoremap <buffer> <A-(> ()<Left>
+        inoremap <buffer> <A-'> ''<Left>
+        inoremap <buffer> <A-"> ""<Left>
+        inoremap <buffer> <A-<> <><Left>
 
-    vnoremap <buffer> <A-'> <ESC>:call pairpunct#Quote_this_block("'", "'", "'\"")<CR>
-    vnoremap <buffer> <A-"> <ESC>:call pairpunct#Quote_this_block('"', '"', "'\"")<CR>
-    vnoremap <buffer> <A-(> <ESC>:call pairpunct#Quote_this_block("(", ")", "()")<CR>
-    vnoremap <buffer> <A-[> <ESC>:call pairpunct#Quote_this_block("[", "]", "[]")<CR>
-    vnoremap <buffer> <A-{> <ESC>:call pairpunct#Quote_this_block("{", "}", "{}")<CR>
-    vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block("<", ">", "<>")<CR>
+        vnoremap <buffer> <A-'> <ESC>:call pairpunct#Quote_this_block("'", "'", "'\"")<CR>
+        vnoremap <buffer> <A-"> <ESC>:call pairpunct#Quote_this_block('"', '"', "'\"")<CR>
+        vnoremap <buffer> <A-(> <ESC>:call pairpunct#Quote_this_block("(", ")", "()")<CR>
+        vnoremap <buffer> <A-[> <ESC>:call pairpunct#Quote_this_block("[", "]", "[]")<CR>
+        vnoremap <buffer> <A-{> <ESC>:call pairpunct#Quote_this_block("{", "}", "{}")<CR>
+        vnoremap <buffer> <A-<> <ESC>:call pairpunct#Quote_this_block("<", ">", "<>")<CR>
+    else
+        inoremap <buffer> [ []<Left>
+        inoremap <buffer> { {}<Left>
+        inoremap <buffer> ( ()<Left>
+        inoremap <buffer> ' ''<Left>
+        inoremap <buffer> " ""<Left>
+        inoremap <buffer> < <><Left>
+
+        vnoremap <buffer> ' <ESC>:call pairpunct#Quote_this_block("'", "'", "'\"")<CR>
+        vnoremap <buffer> " <ESC>:call pairpunct#Quote_this_block('"', '"', "'\"")<CR>
+        vnoremap <buffer> ( <ESC>:call pairpunct#Quote_this_block("(", ")", "()")<CR>
+        vnoremap <buffer> [ <ESC>:call pairpunct#Quote_this_block("[", "]", "[]")<CR>
+        vnoremap <buffer> { <ESC>:call pairpunct#Quote_this_block("{", "}", "{}")<CR>
+        vnoremap <buffer> < <ESC>:call pairpunct#Quote_this_block("<", ">", "<>")<CR>
+    endif
 
     " Sarrow: 2011-11-29
     "vnoremap <buffer> <A-Space> <ESC>:call pairpunct#Quote_this_block(" ", " ", " ")<CR>
